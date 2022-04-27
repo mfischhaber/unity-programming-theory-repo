@@ -11,18 +11,18 @@ public class Animal : MonoBehaviour
     private int nameLimit = 6;
 
     // ENCAPSULATION
-    private string m_Name;
-    public string Name
+    private string m_GivenName;
+    public string GivenName
     {
-        get => m_Name;
-        set => m_Name = value.Substring(0, nameLimit);
+        get => m_GivenName;
+        set => m_GivenName = value.Length > nameLimit ? value.Substring(0, nameLimit) : value;
     }
 
     void Start()
     {
         SelfRigidbody = GetComponent<Rigidbody>();
 
-        SetNameText(m_Name);
+        SetNameText(m_GivenName);
     }
     void Update()
     {
@@ -44,7 +44,6 @@ public class Animal : MonoBehaviour
     {
         nameText.text = value;
     }
-    
     
     private void OnCollisionEnter(Collision collision)
     {
